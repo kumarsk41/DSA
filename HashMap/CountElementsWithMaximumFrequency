@@ -1,0 +1,35 @@
+package dsa.HashMap;
+
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class CountElementsWithMaximumFrequency {
+	public static void main(String[] args) {
+		int nums[] = {1,2,3,4,5};
+		Map<Integer, Integer> map = new LinkedHashMap<Integer, Integer>();
+		for(Integer i:nums) {
+			map.put(i, map.getOrDefault(i, 0)+1);
+		}
+		
+		int maxDuplicate = Integer.MIN_VALUE;
+		int result = 0;
+		
+		for(Map.Entry<Integer, Integer> entry:map.entrySet()) {
+			if(entry.getValue()>maxDuplicate) {
+				maxDuplicate = entry.getValue();
+				result = entry.getKey();
+			}
+		}
+		
+		int check = Integer.MIN_VALUE;
+		int sum = map.get(result);
+		
+		for(Map.Entry<Integer, Integer> entry:map.entrySet()) {
+			if(entry.getKey() != result && entry.getValue() == map.get(result)) {
+				sum+=entry.getValue();
+			}
+		}
+		System.out.println(sum);
+	}
+}
