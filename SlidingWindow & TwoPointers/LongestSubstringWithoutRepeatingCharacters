@@ -1,0 +1,24 @@
+package dsa.SlidingWindowTwoPointers;
+
+public class LongestSubstringWithoutRepeatingCharacters {
+	public static void main(String[] args) {
+		String s ="abcfbena";
+		String result = "";
+		char arr[] = s.toCharArray();
+		StringBuilder sb = new StringBuilder();
+		
+		for(int i = 0; i<arr.length;i++) {
+			char c = arr[i];
+			int idx = result.indexOf(c);
+			if(idx != -1) {
+				sb = sb.delete(0, idx+1);
+			}
+			sb.append(c);
+			if(sb.length()>result.length()) {
+				result = sb.toString();
+			}
+		}
+		System.out.println(result);
+	}
+
+}
