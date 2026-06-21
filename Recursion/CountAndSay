@@ -1,0 +1,31 @@
+package dsa.string;
+
+public class CountAndSay {
+	public static String countAndSay(int n) {
+		if (n == 1) {
+			return "1";
+		}
+		String s = countAndSay(n - 1);
+		char arr[] = s.toCharArray();
+		String result = "";
+		int say;
+		int count = 1;
+		for (int i = 0; i < arr.length; i++) {
+			if (i + 1 <= arr.length - 1 && arr[i] == arr[i + 1]) {
+				count++;
+			} else {
+				say = Integer.valueOf(arr[i] + "");
+				result += count;
+				result += say;
+				count = 1;
+			}
+		}
+		return result;
+	}
+
+	public static void main(String[] args) {
+		int n = 4;
+		System.out.println(countAndSay(n));
+
+	}
+}
